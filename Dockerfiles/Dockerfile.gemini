@@ -1,0 +1,13 @@
+FROM node:20-alpine
+
+RUN npm install -g @google/gemini-cli && npm cache clean --force
+
+RUN addgroup -g 1000 dev && adduser -u 1000 -G dev -s /bin/sh -D dev
+
+RUN mkdir /Coding && chown dev:dev /Coding
+
+USER dev
+
+WORKDIR /Coding
+
+CMD ["sleep", "infinity"]
