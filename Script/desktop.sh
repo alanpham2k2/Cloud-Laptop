@@ -1,5 +1,5 @@
 echo "Removing Snap..."
-while [ "$(snap list | wc -l)" -gt 0 ]; do
+while [ "$(snap list 2>/dev/null | wc -l)" -gt 1 ]; do
     for snap in $(snap list | awk 'NR>1 {print $1}'); do
         sudo snap remove --purge "$snap"
     done
@@ -9,13 +9,12 @@ sudo systemctl disable snapd
 sudo systemctl mask snapd
 sudo apt purge snapd
 rm -rf ~/snap
-sudo rm -rf /snap /var/snap /var/lib/snapd
+sudo rm -rf /snap /var/snap /var/lib/snapd /var/cache/snapd /usr/lib/snapd
 cat <<EOF | sudo tee /etc/apt/preferences.d/nosnap.pref
 Package: snapd
 Pin: release a=*
 Pin-Priority: -10
 EOF
-sudo apt-get install -y gnome-software gnome-firmware
 
 echo "Ïnstalling Flatpak and applications..."
 sudo apt-get install -y flatpak
