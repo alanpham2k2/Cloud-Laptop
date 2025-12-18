@@ -76,7 +76,8 @@ sudo ln -sf /opt/helix/hx /usr/local/bin/hx
 rm -rf helix.tar.xz 
 echo "Helix successfully installed!"
 
-echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc \
+echo "" >> ~/.bashrc \ 
+    && echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc \
     && echo "source <(kubectl completion bash)" >> ~/.bashrc \
     && echo "source <(helm completion bash)" >> ~/.bashrc \
     && echo "source <(kind completion bash)" >> ~/.bashrc \
@@ -84,7 +85,8 @@ echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc \
     && echo "complete -C /usr/local/bin/terraform terraform" >> ~/.bashrc \
     && echo "complete -C /usr/local/bin/aws_completer aws" >> ~/.bashrc \
     && echo "alias k=kubectl" >> ~/.bashrc \
-    && echo "complete -o default -F __start_kubectl k" >> ~/.bashrc
+    && echo "complete -o default -F __start_kubectl k" >> ~/.bashrc \
+    && echo "GEMINI_API_KEY=1" >> ~/.bashrc
 
 source ~/.bashrc
 
