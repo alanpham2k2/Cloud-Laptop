@@ -1,6 +1,3 @@
-echo "Installing GNOME..."
-sudo apt-get install -y gnome-core
-
 echo "Ïnstalling Flatpak..."
 sudo apt-get install -y flatpak
 
