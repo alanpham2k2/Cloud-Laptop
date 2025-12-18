@@ -9,20 +9,6 @@ services:
     ports:
       - "${CHROME_PORT}:${CHROME_PORT}" # Map Host:Container ports
     shm_size: 1gb 
-
-  vaultwarden:
-    image: vaultwarden/server:latest
-    container_name: vaultwarden
-    restart: unless-stopped
-    volumes:
-      - ./vw-data:/data
-    environment:
-      # The token used to access the /admin page
-      - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}
-      # Optional: Disable new signups once you have created your account
-      - SIGNUPS_ALLOWED=true 
-    ports:
-      - "${VAULTWARDEN_PORT}:${VAULTWARDEN_PORT}"
         
   gemini:
     build:
