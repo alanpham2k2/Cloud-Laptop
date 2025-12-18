@@ -1,0 +1,40 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  locale: en_US.UTF-8 
+  timezone: Asia/Ho_Chi_Minh
+  keyboard:
+    layout: us
+
+  network:
+    version: 2
+    wifis:
+      wlan:
+        match:
+          name: w* # `wlan0` or `wlp2s0` or `wlx...`
+        access-points:
+          "NHAT VAN":
+            password: "WIFI_PASSWORD"
+        dhcp4: true # Ask router for IP address
+        optional: true # The network connection is not mandatory for booting
+
+  storage:
+    layout:
+      name: direct # Use the whole disk
+    swap:
+      size: 4G
+      
+  identity:
+    hostname: asus
+    username: ubuntu
+    # Generate new hash with: `openssl passwd -6 "yourpassword"`
+    password: "$6$R/4nGQQt.BpfrJmd$jOdzqwQLe8MdudQLjdJMAcAMCMBdgIMyzdgnuVkHegXqLOL0D4.NZBo.6yf7cNXt1LCYEfembLaQHFnpLy4CA1" 
+    realname: Alan Pham
+
+  ssh:
+    install-server: false
+    
+  packages:
+    - curl
+    - git
