@@ -14,19 +14,21 @@ esac
 
 
 echo "Installing System Utilities..."
-sudo apt-get update
-sudo apt-get install -y \
+sudo apt install -y \
     curl \
     git \
     unzip \
     tar \
     less \
     groff \
-    bash-completion
+    bash-completion \
+    wl-clipboard \
+    unrar-free \
+    tree
 
 
 echo "Installing Docker & Docker Compose..."
-curl -fsSL https://get.docker.com | sh
+curl -fsSL https://get.docker.com | sudo sh
 sudo systemctl enable --now docker
 sudo usermod -aG docker $USER
 echo "Docker successfully installed!"
@@ -76,7 +78,7 @@ sudo ln -sf /opt/helix/hx /usr/local/bin/hx
 rm -rf helix.tar.xz 
 echo "Helix successfully installed!"
 
-echo "" >> ~/.bashrc \ 
+echo "" >> ~/.bashrc \
     && echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc \
     && echo "source <(kubectl completion bash)" >> ~/.bashrc \
     && echo "source <(helm completion bash)" >> ~/.bashrc \
@@ -86,8 +88,10 @@ echo "" >> ~/.bashrc \
     && echo "complete -C /usr/local/bin/aws_completer aws" >> ~/.bashrc \
     && echo "alias k=kubectl" >> ~/.bashrc \
     && echo "complete -o default -F __start_kubectl k" >> ~/.bashrc \
-    && echo "GEMINI_API_KEY=1" >> ~/.bashrc
-
+    && echo "export GEMINI_API_KEY=1" >> ~/.bashrc \
+        
 source ~/.bashrc
 
 mkdir -p ~/Coding/Dockerfile
+git config --global user.email "truongan16062002@gmail.com"
+git config --global user.name "Alan Pham"

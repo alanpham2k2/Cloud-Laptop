@@ -172,7 +172,7 @@ resource "aws_autoscaling_group" "cloud_laptop_asg" {
   vpc_zone_identifier = aws_subnet.main[*].id
   
   desired_capacity    = 0
-  min_size            = 0
+  min_size            = 1
   max_size            = 1
 
   mixed_instances_policy {
